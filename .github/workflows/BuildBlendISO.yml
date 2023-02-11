@@ -23,7 +23,9 @@ jobs:
         pacman -S --noconfirm --needed sudo git base-devel
         printf 'builduser ALL=(ALL) ALL\\n' | tee -a /etc/sudoers
         chown -R builduser:builduser ./
-        pacman --noconfirm --needed -S archiso wget
+        pacman --noconfirm --needed -S archiso git base-devel wget
+        git clone https://github.com/blend-os/blend-keyring-pkg
+        cd blend-keyring-pkg; makepkg --noconfirm -si
         mkarchiso -v .
         EOF
 
